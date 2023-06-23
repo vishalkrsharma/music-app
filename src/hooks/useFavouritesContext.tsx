@@ -1,4 +1,4 @@
-import { FavouritesContext } from '../contexts/FavouritesContext.js';
+import { FavouritesContext } from '../contexts/FavouritesContext';
 import { useContext } from 'react';
 
 export default function useFavouritesContext() {

@@ -1,4 +1,5 @@
 import Favourites from './Favourites';
+import PlayLists from './PlayLists';
 import Released from './Released';
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <>
       <Released />
       <Favourites />
+      <PlayLists />
     </>
   );
 }

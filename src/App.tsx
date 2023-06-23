@@ -5,6 +5,7 @@ import Favourites from './pages/Favourites';
 
 import Layout from './pages/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PlayLists from './pages/PlayLists';
 
 function App() {
   const isLogin = useAuth();
@@ -21,6 +22,10 @@ function App() {
             <Route
               path='/favourites'
               element={<Favourites />}
+            />
+            <Route
+              path='/playlists'
+              element={<PlayLists />}
             />
           </Route>
         </Routes>

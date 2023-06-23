@@ -1,10 +1,12 @@
 import axios from 'axios';
 import songs from '../data/songs.json';
 import useFavouritesContext from './useFavouritesContext';
-import { useEffect } from 'react';
+import usePlaylistsContext from './usePlaylistsContext';
 
 function useMusic() {
   const { favourites, setFavourites } = useFavouritesContext();
+  const { playlists, setPlaylists } = usePlaylistsContext();
+
   const ls = localStorage;
 
   const getFeatured = async () => {
@@ -36,20 +38,6 @@ function useMusic() {
   };
 
   const addFavourites = (song) => {
-    // const fav = favourites.filter((so) => so.key === song.key);
-    // if (fav.length === 0) {
-    //   setFavourites((prev) => [...prev, song]);
-    //   console.log(favourites);
-    //   if (!localStorage.getItem('favourites')) {
-    //     localStorage.setItem('favourites', JSON.stringify([]));
-    //   }
-    //   localStorage.setItem('favourites', JSON.stringify(favourites));
-    // }
-    // let set = new Set(favourites);
-    // set.add(song);
-    // console.log(set);
-    // setFavourites(Array.from(set));
-
     setFavourites((prev) => [...prev, song]);
   };
 
@@ -67,7 +55,44 @@ function useMusic() {
     return fav.length === 0 ? false : true;
   };
 
-  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite };
+  const addPlaylist = (playistsName) => {
+    setPlaylists((prev) => [
+      ...prev,
+      {
+        name: playistsName,
+        songs: [],
+      },
+    ]);
+  };
+
+  const addToPlaylist = (song, playlist) => {
+    if (!isadded(song, playlist)) {
+      setPlaylists((prev) => {
+        for (let i = 0; i < prev.length; i++) {
+          if (prev[i].name === playlist.name) {
+            prev[i].songs = [...prev[i].songs, song];
+          }
+        }
+
+        return [...prev];
+      });
+    }
+  };
+
+  const isadded = (song, playlist) => {
+    for (let i = 0; i < playlists.length; i++) {
+      if (playlists[i].name === playlist.name) {
+        const fav = playlists[i].songs.filter((so) => so.key === song.key);
+        if (fav.length === 0) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  };
+
+  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite, addPlaylist, addToPlaylist };
 }
 
 export default useMusic;
