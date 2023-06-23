@@ -1,0 +1,8 @@
+:root {
+  --purple: #574fd8;
+  --gray: #c9cde9;
+  --pink: #f6b4a5;
+}
+.hover:hover {
+  background-color: #6460dd;
+}

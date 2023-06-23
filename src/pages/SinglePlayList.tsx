@@ -30,13 +30,13 @@ function SinglePlayList() {
         scrollLeft={scrollLeft}
         scrollRight={scrollRight}
       />
-      {playList.songs ? (
+      {!playList.songs ? (
+        <div>No Songs</div>
+      ) : (
         <SongsContainer
           songs={playList.songs}
           id={id}
         />
-      ) : (
-        <div>no songs</div>
       )}
     </div>
   );
