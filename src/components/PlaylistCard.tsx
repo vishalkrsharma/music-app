@@ -9,7 +9,7 @@ function PlaylistCard({ playlist }: Props) {
   return (
     <Link
       to={`/playlists/${playlist.name}`}
-      className='flex-1 d-inline-block p-3 position-relative'
+      className='flex-1 d-inline-block p-3 position-relative hover-card'
       style={{ textDecoration: 'none', color: 'black' }}
     >
       <div

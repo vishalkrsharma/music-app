@@ -54,7 +54,7 @@ function SongCard({ song }: Props) {
   };
 
   return (
-    <div className='flex-1 d-inline-block p-3 position-relative'>
+    <div className='flex-1 d-inline-block p-3 hover-card'>
       <img
         className='rounded-3 mb-3'
         style={{ width: ' 10rem' }}
@@ -66,7 +66,7 @@ function SongCard({ song }: Props) {
           <FaPlus onClick={openModal} />
           <FaHeart
             size={25}
-            color={song.fav ? 'var(--purple)' : 'var(--gray)'}
+            color={song.fav ? 'var(--purple)' : 'black'}
             onClick={() => handleClick(song)}
           />
         </div>

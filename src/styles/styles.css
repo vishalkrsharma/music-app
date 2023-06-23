@@ -6,3 +6,8 @@
 .hover:hover {
   background-color: #6460dd;
 }
+
+.hover-card:hover {
+  background-color: var(--gray);
+  border-radius: 1rem;
+}
