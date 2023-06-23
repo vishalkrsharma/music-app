@@ -6,6 +6,7 @@ import Favourites from './pages/Favourites';
 import Layout from './pages/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PlayLists from './pages/PlayLists';
+import SinglePlayList from './pages/SinglePlayList';
 
 function App() {
   const isLogin = useAuth();
@@ -26,6 +27,10 @@ function App() {
             <Route
               path='/playlists'
               element={<PlayLists />}
+            />
+            <Route
+              path='/playlists/:name'
+              element={<SinglePlayList />}
             />
           </Route>
         </Routes>

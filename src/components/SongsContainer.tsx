@@ -12,12 +12,16 @@ function SongsContainer({ songs, id }: Props) {
       id={id}
       style={{ scrollBehavior: 'smooth' }}
     >
-      {songs.map((song, idx) => (
-        <SongCard
-          song={song}
-          key={idx}
-        />
-      ))}
+      {songs?.length === 0 ? (
+        <div>no songs added</div>
+      ) : (
+        songs.map((song, idx) => (
+          <SongCard
+            song={song}
+            key={idx}
+          />
+        ))
+      )}
     </div>
   );
 }

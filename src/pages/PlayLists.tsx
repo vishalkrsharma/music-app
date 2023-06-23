@@ -21,11 +21,13 @@ function PlayLists() {
         scrollLeft={scrollLeft}
         scrollRight={scrollRight}
       />
-      <AddPlaylists />
-      <PlaylistsContainer
-        playlists={playlists}
-        id={id}
-      />
+      <div className='d-flex'>
+        <AddPlaylists />
+        <PlaylistsContainer
+          playlists={playlists}
+          id={id}
+        />
+      </div>
     </div>
   );
 }

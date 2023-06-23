@@ -55,14 +55,18 @@ function useMusic() {
     return fav.length === 0 ? false : true;
   };
 
-  const addPlaylist = (playistsName) => {
-    setPlaylists((prev) => [
-      ...prev,
-      {
-        name: playistsName,
-        songs: [],
-      },
-    ]);
+  const addPlaylist = (playlistsName) => {
+    const p = playlists.filter((p) => p.name === playlistsName);
+    console.log(p);
+    if (p.length === 0) {
+      setPlaylists((prev) => [
+        ...prev,
+        {
+          name: playlistsName,
+          songs: [],
+        },
+      ]);
+    }
   };
 
   const addToPlaylist = (song, playlist) => {
@@ -92,7 +96,12 @@ function useMusic() {
     return true;
   };
 
-  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite, addPlaylist, addToPlaylist };
+  const getSinglePlaylist = (name) => {
+    const p = playlists.filter((pl) => pl.name === name);
+    return p[0];
+  };
+
+  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite, addPlaylist, addToPlaylist, getSinglePlaylist };
 }
 
 export default useMusic;

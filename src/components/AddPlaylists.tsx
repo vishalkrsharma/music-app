@@ -61,16 +61,22 @@ function AddPlaylists() {
           style={customStyles}
           contentLabel='Example Modal'
         >
-          <button onClick={closeModal}>close</button>
-          <div>Add Playlist</div>
-          <input
-            type='text'
-            placeholder='Playlist Name'
-            name='playlistName'
-            value={playlistName}
-            onChange={(event) => setPlaylistName(event.target.value)}
-          />
-          <button onClick={handleClick}>Add</button>
+          <div className='text-center mb-2'>Add Playlist</div>
+          <div className='d-flex justify-content-center align-content-center gap-4'>
+            <input
+              type='text'
+              placeholder='Playlist Name'
+              name='playlistName'
+              value={playlistName}
+              onChange={(event) => setPlaylistName(event.target.value)}
+            />
+            <button
+              style={{ border: 'none', backgroundColor: 'var(--purple)', color: 'var(--gray)', padding: '.75rem 1rem' }}
+              onClick={handleClick}
+            >
+              Add
+            </button>
+          </div>
         </Modal>
       </div>
     </div>

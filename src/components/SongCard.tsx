@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import PlaylistsContainer from './PlaylistsContainer';
 import usePlaylistsContext from '../hooks/usePlaylistsContext';
+import { TbPlaylist } from 'react-icons/tb';
 
 interface Props {
   song: any;
@@ -60,10 +61,11 @@ function SongCard({ song }: Props) {
 
   const add = (song, playlist) => {
     addToPlaylist(song, playlist);
+    closeModal();
   };
 
   return (
-    <div className='flex-1 d-inline-block p-3 position-relative '>
+    <div className='flex-1 d-inline-block p-3 position-relative'>
       <img
         className='rounded-3 mb-3'
         style={{ width: ' 10rem' }}
@@ -86,22 +88,29 @@ function SongCard({ song }: Props) {
           onRequestClose={closeModal}
           style={customStyles}
         >
-          <button onClick={closeModal}>close</button>
           <div>Add To Playlist</div>
           <div className='d-flex justify-content-start align-items-stretch'>
             {playlists.map((playlist, idx) => (
-              <button
-                className='flex-1 d-inline-block p-3 position-relative'
-                onClick={() => add(song, playlist)}
+              <div
+                className='d-flex justify-content-start align-items-stretch'
                 key={idx}
               >
-                {/* <img
-                  className='rounded-3 mb-3'
-                  style={{ width: ' 10rem' }}
-                  src={img}
-                /> */}
-                <div className='text-center'>{playlist.name.length > 14 ? playlist.name.substring(0, 14) + '...' : playlist.name}</div>
-              </button>
+                <div
+                  className='flex-1 d-inline-block p-3 position-relative'
+                  onClick={() => add(song, playlist)}
+                >
+                  <div
+                    className='rounded-3 mb-3 d-flex justify-content-center align-items-center '
+                    style={{ width: '5rem', height: '5rem', backgroundColor: 'var(--purple)' }}
+                  >
+                    <TbPlaylist
+                      size={50}
+                      color='white'
+                    />
+                  </div>
+                  <div className='text-center'>{playlist.name.length > 14 ? playlist.name.substring(0, 14) + '...' : playlist.name}</div>
+                </div>
+              </div>
             ))}
           </div>
         </Modal>
