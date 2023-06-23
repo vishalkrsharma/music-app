@@ -10,6 +10,7 @@ function PlaylistCard({ playlist }: Props) {
     <Link
       to={`/playlists/${playlist.name}`}
       className='flex-1 d-inline-block p-3 position-relative'
+      style={{ textDecoration: 'none', color: 'black' }}
     >
       <div
         className='rounded-3 mb-3 d-flex justify-content-center align-items-center '

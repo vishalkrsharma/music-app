@@ -4,13 +4,16 @@ import App from './App.tsx';
 import './styles/global.css';
 import { FavouritesContextProvider } from './contexts/FavouritesContext';
 import { PlaylistsContextProvider } from './contexts/PlayListsContext.tsx';
+import { ReleasedContextProvider } from './contexts/ReleasedContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <FavouritesContextProvider>
-      <PlaylistsContextProvider>
-        <App />
-      </PlaylistsContextProvider>
-    </FavouritesContextProvider>
+    <ReleasedContextProvider>
+      <FavouritesContextProvider>
+        <PlaylistsContextProvider>
+          <App />
+        </PlaylistsContextProvider>
+      </FavouritesContextProvider>
+    </ReleasedContextProvider>
   </React.StrictMode>
 );

@@ -7,8 +7,6 @@ export function PlaylistsContextProvider({ children }) {
     return JSON.parse(localStorage.getItem('playlists')) || [];
   });
 
-  console.log(playlists);
-
   useEffect(() => {
     localStorage.setItem('playlists', JSON.stringify(playlists));
   }, [playlists]);

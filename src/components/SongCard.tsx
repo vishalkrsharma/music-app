@@ -27,27 +27,16 @@ Modal.setAppElement('#root');
 
 function SongCard({ song }: Props) {
   const { addFavourites, removeFavourites, isFavourite, addToPlaylist } = useMusic();
-  const [favColor, setFavColor] = useState(false);
-  const { favourites } = useFavouritesContext();
   const [modalIsOpen, setIsOpen] = useState(false);
   const { playlists } = usePlaylistsContext();
 
-  useEffect(() => {
-    const s = isFavourite(song);
-    if (s) {
-      setFavColor(true);
-    }
-  }, []);
-
   const handleClick = (song) => {
     if (!isFavourite(song)) {
+      song.fav = true;
       addFavourites(song);
-
-      setFavColor(true);
     } else {
+      song.fav = false;
       removeFavourites(song);
-
-      setFavColor(false);
     }
   };
 
@@ -77,7 +66,7 @@ function SongCard({ song }: Props) {
           <FaPlus onClick={openModal} />
           <FaHeart
             size={25}
-            color={favColor ? 'var(--purple)' : 'var(--gray)'}
+            color={song.fav ? 'var(--purple)' : 'var(--gray)'}
             onClick={() => handleClick(song)}
           />
         </div>
@@ -101,7 +90,7 @@ function SongCard({ song }: Props) {
                 >
                   <div
                     className='rounded-3 mb-3 d-flex justify-content-center align-items-center '
-                    style={{ width: '5rem', height: '5rem', backgroundColor: 'var(--purple)' }}
+                    style={{ width: '10rem', height: '10rem', backgroundColor: 'var(--purple)' }}
                   >
                     <TbPlaylist
                       size={50}

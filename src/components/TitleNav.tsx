@@ -14,7 +14,7 @@ function TitleNav({ title, scrollLeft, scrollRight }: Props) {
         style={{ color: 'var(--gray)' }}
       >
         <div
-          className='text-uppercase'
+          className='text-uppercase text-center'
           style={{ letterSpacing: '.3rem' }}
         >
           {title}

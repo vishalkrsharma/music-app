@@ -7,9 +7,20 @@ import Layout from './pages/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PlayLists from './pages/PlayLists';
 import SinglePlayList from './pages/SinglePlayList';
+import Search from './pages/Search';
+import { useEffect } from 'react';
+import useMusic from './hooks/useMusic';
 
 function App() {
   const isLogin = useAuth();
+  const { getFeatured } = useMusic();
+  useEffect(() => {
+    async function getSongs() {
+      getFeatured();
+    }
+
+    getSongs();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -31,6 +42,10 @@ function App() {
             <Route
               path='/playlists/:name'
               element={<SinglePlayList />}
+            />
+            <Route
+              path='/search'
+              element={<Search />}
             />
           </Route>
         </Routes>

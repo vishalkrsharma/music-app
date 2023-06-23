@@ -13,7 +13,12 @@ function SongsContainer({ songs, id }: Props) {
       style={{ scrollBehavior: 'smooth' }}
     >
       {songs?.length === 0 ? (
-        <div>no songs added</div>
+        <div
+          className='text-center text-uppercase mt-3'
+          style={{ letterSpacing: '.3rem', color: 'var(--gray)' }}
+        >
+          Loading
+        </div>
       ) : (
         songs.map((song, idx) => (
           <SongCard

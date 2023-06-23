@@ -2,10 +2,12 @@ import axios from 'axios';
 import songs from '../data/songs.json';
 import useFavouritesContext from './useFavouritesContext';
 import usePlaylistsContext from './usePlaylistsContext';
+import useReleasedContext from './useReleasedContext';
 
 function useMusic() {
   const { favourites, setFavourites } = useFavouritesContext();
   const { playlists, setPlaylists } = usePlaylistsContext();
+  const { released, setReleased } = useReleasedContext();
 
   const ls = localStorage;
 
@@ -23,18 +25,41 @@ function useMusic() {
       },
     };
 
-    if (ls.getItem('tracks')) {
-      return JSON.parse(ls.getItem('tracks'));
+    try {
+      const response = await axios.request(options);
+      let { tracks } = response.data;
+      tracks = tracks.map((track) => ({
+        ...track,
+        fav: false,
+      }));
+      setReleased(tracks);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    // const response = await axios.request(options);
-    let { tracks } = songs;
-    tracks = tracks.map((track) => ({
-      ...track,
-      fav: false,
-    }));
-    ls.setItem('tracks', JSON.stringify(tracks));
-    return tracks;
+  const search = async (title) => {
+    const options = {
+      method: 'GET',
+      url: 'https://shazam.p.rapidapi.com/search',
+      params: {
+        term: title,
+        locale: 'en-US',
+        offset: '0',
+        limit: '5',
+      },
+      headers: {
+        'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY,
+        'X-RapidAPI-Host': import.meta.env.VITE_RAPIDAPI_HOST,
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      return response.data.tracks;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const addFavourites = (song) => {
@@ -101,7 +126,7 @@ function useMusic() {
     return p[0];
   };
 
-  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite, addPlaylist, addToPlaylist, getSinglePlaylist };
+  return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite, addPlaylist, addToPlaylist, getSinglePlaylist, search };
 }
 
 export default useMusic;
