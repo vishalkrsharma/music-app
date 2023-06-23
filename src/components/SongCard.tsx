@@ -17,11 +17,10 @@ function SongCard({ song }: Props) {
     if (s) {
       setFavColor(true);
     }
-  });
+  }, []);
 
   const handleClick = (song) => {
-    const fav = favourites.filter((so) => so.key === song.key);
-    if (fav.length === 0) {
+    if (!isFavourite(song)) {
       addFavourites(song);
 
       setFavColor(true);

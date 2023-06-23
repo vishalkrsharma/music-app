@@ -1,6 +1,7 @@
 import axios from 'axios';
 import songs from '../data/songs.json';
 import useFavouritesContext from './useFavouritesContext';
+import { useEffect } from 'react';
 
 function useMusic() {
   const { favourites, setFavourites } = useFavouritesContext();
@@ -35,12 +36,21 @@ function useMusic() {
   };
 
   const addFavourites = (song) => {
-    const fav = favourites.filter((so) => so.key === song.key);
+    // const fav = favourites.filter((so) => so.key === song.key);
+    // if (fav.length === 0) {
+    //   setFavourites((prev) => [...prev, song]);
+    //   console.log(favourites);
+    //   if (!localStorage.getItem('favourites')) {
+    //     localStorage.setItem('favourites', JSON.stringify([]));
+    //   }
+    //   localStorage.setItem('favourites', JSON.stringify(favourites));
+    // }
+    // let set = new Set(favourites);
+    // set.add(song);
+    // console.log(set);
+    // setFavourites(Array.from(set));
 
-    if (fav.length === 0) {
-      setFavourites([...favourites, song]);
-      ls.setItem('favourites', JSON.stringify(favourites));
-    }
+    setFavourites((prev) => [...prev, song]);
   };
 
   const getFavourites = () => {
@@ -54,7 +64,7 @@ function useMusic() {
 
   const isFavourite = (song) => {
     const fav = favourites.filter((so) => so.key === song.key);
-    return fav.length !== 0 ? true : false;
+    return fav.length === 0 ? false : true;
   };
 
   return { getFeatured, addFavourites, getFavourites, removeFavourites, isFavourite };

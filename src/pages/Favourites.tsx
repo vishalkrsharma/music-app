@@ -9,10 +9,10 @@ function Favourites() {
   const { favourites } = useFavouritesContext();
 
   const scrollLeft = () => {
-    document.getElementById(id).scrollLeft -= document.getElementById(id).clientWidth + document.getElementById(id).clientWidth * 0.25;
+    document.getElementById(id).scrollLeft -= document.getElementById(id).clientWidth * 0.15;
   };
   const scrollRight = () => {
-    document.getElementById(id).scrollLeft += document.getElementById(id).clientWidth + document.getElementById(id).clientWidth * 0.25;
+    document.getElementById(id).scrollLeft += document.getElementById(id).clientWidth * 0.15;
   };
 
   return (
