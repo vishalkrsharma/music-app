@@ -13,7 +13,6 @@ function Search() {
     const data = await search(title);
     const { hits } = data;
     setSearchedTracks(hits);
-    setTitle('');
     setIsSearched(true);
   };
 
