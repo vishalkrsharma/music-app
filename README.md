@@ -1,6 +1,10 @@
 # music-app
 
-Music API: https://rapidapi.com/apidojo/api/shazam/
+Music API : https://rapidapi.com/apidojo/api/shazam/
+
+Authentication : KeyCloak
+
+Frontend Library : ReactJS
 
 <img src='./readmePictures/Login.png' />
 
